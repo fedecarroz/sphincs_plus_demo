@@ -13,6 +13,9 @@ dependencies:
   equatable: ^2.0.5
   bloc: ^8.1.2
   flutter_bloc: ^8.1.3
+  sphincsplus:
+    git:
+      url: https://github.com/fedecarroz/sphincsplus_dart
 
 dev_dependencies:
   flutter_test:

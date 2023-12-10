@@ -1,68 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:sphincsplus_demo/business_logic.dart';
+import 'package:sphincsplus_demo/presentation.dart';
 
 void main() {
-  runApp(const MyApp());
+  Bloc.observer = DebugBloc();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // ignore: deprecated_member_use
+  widgetsBinding.renderView.automaticSystemUiAdjustment = false;
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return MultiBlocProvider(
+      providers: <BlocProvider>[
+        BlocProvider<KeyGenerationCubit>(
+          create: (context) => KeyGenerationCubit(),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        BlocProvider<SignatureCubit>(
+          create: (context) => SignatureCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'SPHINCS+ Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.orange,
+          ),
+          useMaterial3: true,
+        ),
+        home: LoaderOverlay(
+          useDefaultLoading: false,
+          overlayWidgetBuilder: (_) => const Center(
+            child: CircularProgressIndicator(
+              color: Colors.orange,
+            ),
+          ),
+          child: const HomePage(),
+        ),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
