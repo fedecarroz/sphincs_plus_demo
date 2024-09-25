@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sphincsplus_demo/business_logic.dart';
-import 'package:sphincsplus_demo/presentation.dart';
+import 'package:sphincs_plus_demo/logic.dart';
+import 'package:sphincs_plus_demo/ui.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             showCustomDialog(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:sphincsplus_demo/business_logic.dart';
-import 'package:sphincsplus_demo/presentation.dart';
+import 'package:sphincs_plus_demo/logic.dart';
+import 'package:sphincs_plus_demo/ui.dart';
 
 class MessagePage extends StatefulWidget {
   const MessagePage({super.key});
@@ -50,7 +50,7 @@ class _MessagePageState extends State<MessagePage> {
               'Type the message:',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),

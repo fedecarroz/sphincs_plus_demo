@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sphincsplus_demo/presentation.dart';
+import 'package:sphincs_plus_demo/ui.dart';
 
 Future<void> showCustomDialog(
   BuildContext context,
@@ -77,7 +77,7 @@ class _CustomDialog extends StatelessWidget {
                           text,
                           style: const TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                           textAlign: TextAlign.center,
                         ),

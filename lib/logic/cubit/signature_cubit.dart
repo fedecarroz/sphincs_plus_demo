@@ -3,11 +3,14 @@ import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:sphincs_plus_demo/logic.dart';
 
 part 'signature_state.dart';
 
 class SignatureCubit extends Cubit<SignatureState> {
-  SignatureCubit() : super(const SignatureState());
+  final DataCubit _dataCubit;
+
+  SignatureCubit(this._dataCubit) : super(const SignatureState());
 
   void setMessage(String message) {
     emit(state.copyWith(status: SignatureStatus.messageSetInProgress));
@@ -22,8 +25,10 @@ class SignatureCubit extends Cubit<SignatureState> {
   void signMessage() {
     emit(state.copyWith(status: SignatureStatus.signatureInProgress));
     try {
-      // TODO: implement real signature
-      final signedMessage = Uint8List.fromList([1, 2, 3]);
+      final signedMessage = _dataCubit.sphincsPlus.sign(
+        message: state.message,
+        secretKey: _dataCubit.secretKey,
+      );
 
       emit(
         state.copyWith(
@@ -67,8 +72,11 @@ class SignatureCubit extends Cubit<SignatureState> {
     emit(state.copyWith(status: SignatureStatus.verificationInProgress));
 
     try {
-      // TODO: implement real verification
-      final result = state.tamperedMessage == state.signedMessage;
+      final result = _dataCubit.sphincsPlus.verify(
+        message: state.message,
+        publicKey: _dataCubit.publicKey,
+        signedMessage: state.tamperedMessage!,
+      );
 
       emit(
         state.copyWith(

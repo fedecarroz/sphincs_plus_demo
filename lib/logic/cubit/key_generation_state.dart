@@ -16,18 +16,16 @@ class KeyGenerationState extends Equatable {
   final String hashType;
   final String bitNumber;
   final String methodType;
+  final Thash? spxThash;
   final Params? spxParams;
-  final Uint8List? publicKey;
-  final Uint8List? secretKey;
 
   const KeyGenerationState({
     this.status = KeyGenerationStatus.initial,
     this.hashType = '',
     this.bitNumber = '',
     this.methodType = '',
+    this.spxThash,
     this.spxParams,
-    this.publicKey,
-    this.secretKey,
   });
 
   KeyGenerationState copyWith({
@@ -35,18 +33,16 @@ class KeyGenerationState extends Equatable {
     String? hashType,
     String? bitNumber,
     String? methodType,
+    Thash? spxThash,
     Params? spxParams,
-    Uint8List? publicKey,
-    Uint8List? secretKey,
   }) {
     return KeyGenerationState(
       status: status ?? this.status,
       hashType: hashType ?? this.hashType,
       bitNumber: bitNumber ?? this.bitNumber,
       methodType: methodType ?? this.methodType,
+      spxThash: spxThash ?? this.spxThash,
       spxParams: spxParams ?? this.spxParams,
-      publicKey: publicKey ?? this.publicKey,
-      secretKey: secretKey ?? this.secretKey,
     );
   }
 
@@ -56,8 +52,7 @@ class KeyGenerationState extends Equatable {
         hashType,
         bitNumber,
         methodType,
+        spxThash,
         spxParams,
-        publicKey,
-        secretKey,
       ];
 }

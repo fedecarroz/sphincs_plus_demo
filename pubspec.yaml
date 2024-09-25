@@ -1,4 +1,4 @@
-name: sphincsplus_demo
+name: sphincs_plus_demo
 description: "Flutter demo application for SPHINCS+ package"
 publish_to: "none"
 version: 1.0.0+1
@@ -13,9 +13,8 @@ dependencies:
   equatable: ^2.0.5
   bloc: ^8.1.2
   flutter_bloc: ^8.1.3
-  sphincsplus:
-    git:
-      url: https://github.com/fedecarroz/sphincsplus_dart
+  sphincs_plus:
+    path: ../
 
 dev_dependencies:
   flutter_test:

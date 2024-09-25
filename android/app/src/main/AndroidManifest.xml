@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="sphincsplus_demo"
+        android:label="sphincs_plus_demo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

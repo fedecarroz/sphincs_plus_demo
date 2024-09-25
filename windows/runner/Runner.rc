@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "sphincsplus_demo" "\0"
+            VALUE "CompanyName", "com.fedecarroz" "\0"
+            VALUE "FileDescription", "sphincs_plus_demo" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "sphincsplus_demo" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "sphincsplus_demo.exe" "\0"
-            VALUE "ProductName", "sphincsplus_demo" "\0"
+            VALUE "InternalName", "sphincs_plus_demo" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2023 com.fedecarroz. All rights reserved." "\0"
+            VALUE "OriginalFilename", "sphincs_plus_demo.exe" "\0"
+            VALUE "ProductName", "sphincs_plus_demo" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

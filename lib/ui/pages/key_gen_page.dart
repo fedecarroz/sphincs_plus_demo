@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:sphincsplus_demo/business_logic.dart';
-import 'package:sphincsplus_demo/presentation/widgets.dart';
+import 'package:sphincs_plus/sphincs_plus_dart.dart';
+import 'package:sphincs_plus_demo/logic.dart';
+import 'package:sphincs_plus_demo/ui/widgets.dart';
 
 class KeyGenPage extends StatelessWidget {
   const KeyGenPage({super.key});
@@ -46,6 +47,8 @@ class KeyGenPage extends StatelessWidget {
               const _BitSelection(),
               const SizedBox(height: 10),
               const _MethodSelection(),
+              const SizedBox(height: 10),
+              const _TweakableHashSelection(),
               const Expanded(child: SizedBox()),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -80,7 +83,7 @@ class _HashSelection extends StatelessWidget {
               'Hash type:',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -98,7 +101,7 @@ class _HashSelection extends StatelessWidget {
                   'Haraka',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -117,7 +120,7 @@ class _HashSelection extends StatelessWidget {
                   'SHA2',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -136,7 +139,7 @@ class _HashSelection extends StatelessWidget {
                   'SHAKE',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -162,7 +165,7 @@ class _BitSelection extends StatelessWidget {
               'Bit number:',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -180,7 +183,7 @@ class _BitSelection extends StatelessWidget {
                   '128',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -199,7 +202,7 @@ class _BitSelection extends StatelessWidget {
                   '192',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -218,7 +221,7 @@ class _BitSelection extends StatelessWidget {
                   '256',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -244,7 +247,7 @@ class _MethodSelection extends StatelessWidget {
               'Method type:',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -262,7 +265,7 @@ class _MethodSelection extends StatelessWidget {
                   'Slow',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -281,7 +284,74 @@ class _MethodSelection extends StatelessWidget {
                   'Fast',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _TweakableHashSelection extends StatelessWidget {
+  const _TweakableHashSelection();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<KeyGenerationCubit, KeyGenerationState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'Tweakable hash:',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Radio<Thash>(
+                  value: Thash.simple,
+                  groupValue: state.spxThash,
+                  onChanged: (Thash? value) {
+                    context
+                        .read<KeyGenerationCubit>()
+                        .updateTweakableHash(value);
+                  },
+                  activeColor: Colors.orange,
+                ),
+                const Text(
+                  'Simple',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Radio<Thash>(
+                  value: Thash.robust,
+                  groupValue: state.spxThash,
+                  onChanged: (Thash? value) {
+                    context
+                        .read<KeyGenerationCubit>()
+                        .updateTweakableHash(value);
+                  },
+                  activeColor: Colors.orange,
+                ),
+                const Text(
+                  'Robust',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
                   ),
                 ),
               ],
