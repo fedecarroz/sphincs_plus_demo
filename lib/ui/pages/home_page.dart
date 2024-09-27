@@ -20,23 +20,6 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            showCustomDialog(
-              context,
-              'INFO',
-              'SPHINCS+ Demo\n'
-                  'credits to:\n'
-                  'Federico Carrozzino\n'
-                  'Marco Franceschini',
-              height: 245,
-            );
-          },
-          icon: const Icon(
-            Icons.info_outline,
-            color: Colors.white,
-          ),
-        ),
         title: const Text(
           'SPHINCS+ Demo',
           style: TextStyle(color: Colors.white),

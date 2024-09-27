@@ -262,7 +262,7 @@ class _MethodSelection extends StatelessWidget {
                   activeColor: Colors.orange,
                 ),
                 const Text(
-                  'Slow',
+                  'Small',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
