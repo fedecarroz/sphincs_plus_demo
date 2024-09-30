@@ -42,7 +42,6 @@ class App extends StatelessWidget {
           useMaterial3: true,
         ),
         home: LoaderOverlay(
-          useDefaultLoading: false,
           overlayWidgetBuilder: (_) => const Center(
             child: CircularProgressIndicator(
               color: Colors.orange,
