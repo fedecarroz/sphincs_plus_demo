@@ -69,7 +69,9 @@ class KeyGenerationCubit extends Cubit<KeyGenerationState> {
 
       late final Uint8List publicKey;
       late final Uint8List secretKey;
-      (publicKey, secretKey) = _dataCubit.sphincsPlus.generateKeyPair();
+      (publicKey, secretKey) = _dataCubit.sphincsPlus.generateKeyPair(
+        seed: 'a' * _dataCubit.sphincsPlus.seedLength,
+      );
 
       _dataCubit.setKeyPair(publicKey, secretKey);
 
