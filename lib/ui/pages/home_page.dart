@@ -25,29 +25,32 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(color: Colors.white),
         ),
         actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              context
-                ..read<KeyGenerationCubit>().reset()
-                ..read<SignatureCubit>().reset();
-              showCustomDialog(
-                context,
-                'RESET',
-                'Reset successful',
-              ).then(
-                (_) {
-                  setState(() => _selectedIndex = 0);
-                  _pageController.animateToPage(
-                    0,
-                    duration: const Duration(milliseconds: 200),
-                    curve: Curves.linear,
-                  );
-                },
-              );
-            },
-            icon: const Icon(
-              Icons.close,
-              color: Colors.white,
+          Visibility(
+            visible: _selectedIndex == 0,
+            child: IconButton(
+              onPressed: () {
+                context
+                  ..read<KeyGenerationCubit>().reset()
+                  ..read<SignatureCubit>().reset();
+                showCustomDialog(
+                  context,
+                  'RESET',
+                  'Reset successful',
+                ).then(
+                  (_) {
+                    setState(() => _selectedIndex = 0);
+                    _pageController.animateToPage(
+                      0,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.linear,
+                    );
+                  },
+                );
+              },
+              icon: const Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
