@@ -43,11 +43,10 @@ class _SignPageState extends State<SignPage> {
           const SizedBox(height: 10),
           BlocBuilder<SignatureCubit, SignatureState>(
             builder: (context, state) {
-              return _MessageBox(
-                message: state.message.isNotEmpty
-                    ? utf8.encode(state.message).toString()
-                    : '',
-              );
+              final msg = state.message.isNotEmpty
+                  ? utf8.encode(state.message).toString()
+                  : '';
+              return _MessageBox(message: msg);
             },
           ),
           const SizedBox(height: 10),
